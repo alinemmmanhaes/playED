@@ -84,6 +84,7 @@ void LiberaPlaylist(Playlist* p){
     while(aux){
         c = aux;
         aux = aux->prox;
+        LiberaMusica(c->music);
         free(c);
     }
     free(p);

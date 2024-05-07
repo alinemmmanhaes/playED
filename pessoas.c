@@ -1,10 +1,12 @@
 #include "pessoas.h"
+#include "playlists.h"
 #include <stdlib.h>
 #include <string.h>
 
 struct pessoa{
     char* nome;
     Amigos* amigos;
+    Listas* playlists;
 };
 
 typedef struct cel Cel;
@@ -24,6 +26,7 @@ Pessoa* CriaPessoa(char* nome){
     Pessoa* p = malloc(sizeof(Pessoa));
     p->nome = strdup(nome);
     p->amigos = CriaAmigos();
+    p->playlists = CriaLista();
     return p;
 }
 
