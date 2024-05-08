@@ -3,7 +3,9 @@
 
 #include <stdio.h>
 
-typedef struct amigos Amigos;
+typedef struct lista Lista;
+
+typedef Lista Amigos;
 
 typedef struct pessoa Pessoa;
 

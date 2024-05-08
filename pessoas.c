@@ -11,7 +11,7 @@ struct pessoa{
 
 typedef struct cel Cel;
 
-struct amigos{
+struct lista{
     Cel* prim;
     Cel* ult;
 };

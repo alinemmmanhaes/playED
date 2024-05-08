@@ -10,6 +10,7 @@ struct musica{
 typedef struct cel Cel;
 
 struct playlist{
+    char *nome;
     Cel* prim;
     Cel* ult;
 };
@@ -27,8 +28,9 @@ Musica* CriaMusica(char* nome, char* artista){
     return m;
 }
 
-Playlist* CriaPlaylist(){
+Playlist* CriaPlaylist(char* nome){
     Playlist* p = malloc(sizeof(Playlist));
+    p->nome = strdup(nome);
     p->prim = p->ult = NULL;
     return p;
 }
@@ -105,4 +107,8 @@ int ExisteEmPlaylist(Playlist* p, Musica* m){
         c = c->prox;
     }
     return 0;
+}
+
+char* RetornaNomeArtista(Musica *m){
+    return m->artista;
 }
