@@ -4,16 +4,21 @@
 #include <stdio.h>
 #include "musicas.h"
 
-typedef struct listas Listas;
+typedef struct listPL ListPL;
 
-Listas* CriaLista();
+//Cria uma lista de playlists vazia
+ListPL* CriaLista();
 
-void InserePlaylist(Playlist* p, Listas* l);
+//Insere playlist na lista de playlists
+void InserePlaylist(Playlist* p, ListPL* l);
 
-void RemovePlaylist(Playlist* p, Listas* l);
+//Remove playlist da lista de playlists
+void RemovePlaylist(Playlist* p, ListPL* l);
 
-void LiberaLista(Listas* l);
+//Libera lista de playlists e suas playlists
+void LiberaListPL(ListPL* l);
 
-int ExisteEmLista(Playlist* p, Listas* l);
+//Verifica se uma playlist se encontra na lista de playlists
+int ExisteEmListPL(Playlist* p, ListPL* l);
 
 #endif

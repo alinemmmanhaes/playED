@@ -8,6 +8,7 @@ int main(int argc, char *argv[]) {
     char diretorio[1000];
     char amizades[1000];
 
+    //cria diretório e abre o primeiro arquivo "amizades.txt"
 	sprintf(diretorio, "%s", argv[1]);
 
     sprintf(amizades, "%s/amizades.txt", diretorio);
@@ -18,15 +19,27 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    Lista *listaPessoas = CriaAmigos();
+    //cria lista das pessoas da PlayED
+    Lista *listaPessoas = CriaListPessoas();
 
-    char nome[100];
-    while(fscanf(amizades, "%[^;\n]", nome) == 1){
+    char nome[100], caractere;
+    //le todas as pessoas e adiciona elas na lista de pessoas
+    while(fscanf(amizades, "%[^;\n]%c", nome, caractere) == 2){
         Pessoa* p = CriaPessoa(nome);
-        InsereAmigo(listaPessoas, p);
-        //como fazer pra sair do loop qnd terminar de ler a 1 linha do arquivo?
+        InserePessoa(listaPessoas, p);
+        if(caractere == '\n'){
+            break;
+        }
     }
 
+    char nome1[100], nome2[100];
+    //le todas as amizades e correlaciona as pessoas envolvidas
+    while(fscanf(amizades, "%s;%s%*c", nome1, nome2) == 2){
+        RelacionaAmigos(nome1, nome2, listaPessoas);
+    }
+
+
+    LiberaListPessoas(listaPessoas, ListaGeral);
 
     return 0;
 }

@@ -6,7 +6,7 @@
 struct pessoa{
     char* nome;
     Amigos* amigos;
-    Listas* playlists;
+    ListPL* playlists;
 };
 
 typedef struct cel Cel;
@@ -26,17 +26,17 @@ Pessoa* CriaPessoa(char* nome){
     Pessoa* p = malloc(sizeof(Pessoa));
     p->nome = strdup(nome);
     p->amigos = CriaAmigos();
-    p->playlists = CriaLista();
+    p->playlists = CriaListPL();
     return p;
 }
 
-Amigos* CriaAmigos(){
+Amigos* CriaListPessoas(){
     Amigos* a = malloc(sizeof(Amigos));
     a->prim = a->ult = NULL;
     return a;
 }
 
-void InsereAmigo(Amigos* a, Pessoa* p){
+void InserePessoa(Amigos* a, Pessoa* p){
     Cel* c = malloc(sizeof(Cel));
     c->pessoa = p;
     c->prox = NULL;
@@ -52,7 +52,7 @@ void InsereAmigo(Amigos* a, Pessoa* p){
     a->ult = c;
 }
 
-void RemoveAmigo(Amigos* a, Pessoa* p){
+void RemovePessoa(Amigos* a, Pessoa* p){
     Cel* c = a->prim;
     while (c){
         if(c->pessoa == p){
@@ -82,11 +82,14 @@ void RemoveAmigo(Amigos* a, Pessoa* p){
     free(c);
 }
 
-void LiberaAmigos(Amigos* a){
+void LiberaListPessoas(Amigos* a, int op){
     Cel* c, * aux = a->prim;
     while(aux){
         c = aux;
         aux = aux->prox;
+        if(op == ListaGeral){
+            LiberaPessoa(c->pessoa);
+        }
         free(c);
     }
     free(a);
@@ -94,7 +97,8 @@ void LiberaAmigos(Amigos* a){
 
 void LiberaPessoa(Pessoa* p){
     free(p->nome);
-    LiberaAmigos(p->amigos);
+    LiberaAmigos(p->amigos, Amizade);
+    LiberaListPL(p->playlists);
     free(p);
 }
 
@@ -107,4 +111,30 @@ int ExisteEmAmigos(Amigos* a, Pessoa* p){
         c = c->prox;
     }
     return 0;
+}
+
+void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas){
+    Pessoa* pessoa1 = NULL, *pessoa2 = NULL;
+    Cel* c = pessoas->prim;
+    while (c){
+        if(strcmp(c->pessoa->nome, nome1) == 0){
+            pessoa1 = c->pessoa;
+            break;
+        }
+        c = c->prox;
+    }
+
+    c = pessoas->prim;
+    while (c){
+        if(strcmp(c->pessoa->nome, nome2) == 0){
+            pessoa2 = c->pessoa;
+            break;
+        }
+        c = c->prox;
+    }
+
+    if(pessoa1 && pessoa2){
+        InsereAmigo(pessoa1->amigos, pessoa2);
+        InsereAmigo(pessoa2->amigos, pessoa1);
+    }
 }

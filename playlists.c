@@ -4,7 +4,7 @@
 
 typedef struct cel Cel;
 
-struct listas{
+struct listPL{
     Cel* prim;
     Cel* ult;
 };
@@ -15,13 +15,13 @@ struct cel{
     Cel* prox;
 };
 
-Listas* CriaLista(){
-    Listas* l = malloc(sizeof(Listas));
+ListPL* CriaListPL(){
+    ListPL* l = malloc(sizeof(ListPL));
     l->prim = l->ult = NULL;
     return l;
 }
 
-void InserePlaylist(Playlist* p, Listas* l){
+void InserePlaylist(Playlist* p, ListPL* l){
     Cel* c = malloc(sizeof(Cel));
     c->playlist = p;
     c->prox = NULL;
@@ -36,7 +36,7 @@ void InserePlaylist(Playlist* p, Listas* l){
     l->ult = c;
 }
 
-void RemovePlaylist(Playlist* p, Listas* l){
+void RemovePlaylist(Playlist* p, ListPL* l){
     Cel* c = l->prim;
     while(c){
         if(c->playlist == p){
@@ -66,7 +66,7 @@ void RemovePlaylist(Playlist* p, Listas* l){
     free(c);
 }
 
-void LiberaLista(Listas* l){
+void LiberaListPL(ListPL* l){
     Cel* c, * aux = l->prim;
     while(aux){
         c = aux;
@@ -77,7 +77,7 @@ void LiberaLista(Listas* l){
     free(l);
 }
 
-int ExisteEmLista(Playlist* p, Listas* l){
+int ExisteEmListPL(Playlist* p, ListPL* l){
     Cel* c = l->prim;
     while(c){
         if(c->playlist == p){
