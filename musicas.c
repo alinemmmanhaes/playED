@@ -112,3 +112,7 @@ int ExisteEmPlaylist(Playlist* p, Musica* m){
 char* RetornaNomeArtista(Musica *m){
     return m->artista;
 }
+
+char* RetornaNomePlaylist(Playlist *p){
+    return p->nome;
+}

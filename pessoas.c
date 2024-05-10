@@ -113,28 +113,59 @@ int ExisteEmAmigos(Amigos* a, Pessoa* p){
     return 0;
 }
 
+Pessoa *EncontraPessoaNaLista(char *nome, Lista* pessoas){
+    Pessoa* p = NULL;
+    Cel* c = pessoas->prim;
+    while (c){
+        if(strcmp(c->pessoa->nome, nome) == 0){
+            p = c->pessoa;
+            break;
+        }
+        c = c->prox;
+    }
+    return p;
+}
+
 void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas){
     Pessoa* pessoa1 = NULL, *pessoa2 = NULL;
     Cel* c = pessoas->prim;
-    while (c){
+    /*while (c){
         if(strcmp(c->pessoa->nome, nome1) == 0){
             pessoa1 = c->pessoa;
             break;
         }
         c = c->prox;
-    }
+    }*/
 
-    c = pessoas->prim;
+    /*c = pessoas->prim;
     while (c){
         if(strcmp(c->pessoa->nome, nome2) == 0){
             pessoa2 = c->pessoa;
             break;
         }
         c = c->prox;
-    }
+    }*/
 
+    pessoa1 = EncontraPessoaNaLista(nome1, pessoas);
+    pessoa2 = EncontraPessoaNaLista(nome2, pessoas);
+    
     if(pessoa1 && pessoa2){
-        InsereAmigo(pessoa1->amigos, pessoa2);
-        InsereAmigo(pessoa2->amigos, pessoa1);
+        InserePessoa(pessoa1->amigos, pessoa2);
+        InserePessoa(pessoa2->amigos, pessoa1);
     }
 }
+
+void InserePLNaPessoa(char *nome, Lista *pessoas, Playlist *pl){
+    Pessoa* pessoa = EncontraPessoaNaLista(nome, pessoas);
+    Cel* c = pessoas->prim;
+    InserePlaylist(pl, pessoa->playlists);
+}
+
+void LeArquivosDePlaylist(Lista *pessoas, char *diretorio){
+    Cel* c = pessoas->prim;
+    while (c){
+        InsereMusicasNasPLSDaPessoa(c->pessoa->playlists, diretorio);
+        c = c->prox;
+    }
+}
+

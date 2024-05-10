@@ -88,3 +88,21 @@ int ExisteEmListPL(Playlist* p, ListPL* l){
     return 0;
 }
 
+void InsereMusicasNasPLSDaPessoa(ListPL* l, char *diretorio){
+    FILE *playlist;
+    Cel* c = l->prim;
+    char nomeArq[1000], artista[100], music[100];
+
+    while(c){
+        sprintf(nomeArq, "%s/%s", diretorio, RetornaNomePlaylist(c->playlist));
+        playlist = fopen(nomeArq, "r");
+
+        while(fscanf(playlist, "%s - %s\n", artista, music) == 2){//acho que tá meio errado isso aqui
+            Musica *musica = CriaMusica(music, artista);
+            InsereMusica(c->playlist, musica);
+        }
+        
+        fclose(playlist);
+        c = c->prox;
+    }
+}

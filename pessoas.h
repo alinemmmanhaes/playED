@@ -36,10 +36,19 @@ void LiberaPessoa(Pessoa* p);
 //Verifica se uma pessoa está presente em uma lista de amigos/pessoas
 int ExisteEmAmigos(Amigos* a, Pessoa* p);
 
+//Retorna a pessoa caso ela seja encontrada na lista
+Pessoa *EncontraPessoaNaLista(char *nome, Lista* pessoas);
+
 /*Relaciona dois amigos
 Compara seus nomes até encontrar quais pessoas eles são
 Salva um na lista de amigos do outro
 */
 void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas);
+
+//Insere a playlist na lista de playlists da pessoa cujo nome foi passado como parâmetro
+void InserePLNaPessoa(char *nome, Lista *pessoas, Playlist *pl);
+
+//Lê cada arquivo de playlist e insere seu conteúdo dentro da lista de playlists de cada pessoa
+void LeArquivosDePlaylist(Lista *pessoas, char *diretorio);
 
 #endif

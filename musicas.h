@@ -31,5 +31,6 @@ int ExisteEmPlaylist(Playlist* p, Musica* m);
 //Retorna o nome do artista de uma música
 char* RetornaNomeArtista(Musica *m);
 
+char* RetornaNomePlaylist(Playlist *p);
 
 #endif

@@ -21,4 +21,6 @@ void LiberaListPL(ListPL* l);
 //Verifica se uma playlist se encontra na lista de playlists
 int ExisteEmListPL(Playlist* p, ListPL* l);
 
+void InsereMusicasNasPLSDaPessoa(ListPL* l, char *diretorio);
+
 #endif
