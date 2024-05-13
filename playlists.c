@@ -97,7 +97,7 @@ void InsereMusicasNasPLSDaPessoa(ListPL* l, char *diretorio){
         sprintf(nomeArq, "%s/%s", diretorio, RetornaNomePlaylist(c->playlist));
         playlist = fopen(nomeArq, "r");
 
-        while(fscanf(playlist, "%s - %s\n", artista, music) == 2){//acho que tá meio errado isso aqui
+        while(fscanf(playlist, "%[^-]- %[^\n]\n", artista, music) == 2){//acho que tá meio errado isso aqui
             Musica *musica = CriaMusica(music, artista);
             InsereMusica(c->playlist, musica);
         }

@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 
     char nome[100], nome2[100], caractere;
     //le todas as pessoas e adiciona elas na lista de pessoas
-    while(fscanf(arqAmizades, "%[^;\n]%c", nome, caractere) == 2){
+    while(fscanf(arqAmizades, "%[^;\n]%c", nome, &caractere) == 2){
         Pessoa* p = CriaPessoa(nome);
         InserePessoa(listaPessoas, p);
         if(caractere == '\n'){
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     char nomePlaylist[100];
     int qtdPlaylist;
     //Lê as playlist de cada pessoa e adiciona à sua respectiva lista de playlists
-    while(fscanf(arqPlaylist, "%s;%d;", nome, qtdPlaylist) == 2){
+    while(fscanf(arqPlaylist, "%s;%d;", nome, &qtdPlaylist) == 2){
         
         for(int i = 0; i < qtdPlaylist; i++){
             fscanf(arqPlaylist, "%[^;\n]%*c", nomePlaylist);

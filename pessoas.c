@@ -157,7 +157,7 @@ void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas){
 
 void InserePLNaPessoa(char *nome, Lista *pessoas, Playlist *pl){
     Pessoa* pessoa = EncontraPessoaNaLista(nome, pessoas);
-    Cel* c = pessoas->prim;
+    //Cel* c = pessoas->prim;
     InserePlaylist(pl, pessoa->playlists);
 }
 
