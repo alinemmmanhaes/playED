@@ -7,7 +7,7 @@
 typedef struct listPL ListPL;
 
 //Cria uma lista de playlists vazia
-ListPL* CriaLista();
+ListPL* CriaListPL();
 
 //Insere playlist na lista de playlists
 void InserePlaylist(Playlist* p, ListPL* l);

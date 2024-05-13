@@ -2,6 +2,7 @@
 #define pessoas_h
 
 #include <stdio.h>
+#include "musicas.h"
 
 #define Amizade 0
 #define ListaGeral 1

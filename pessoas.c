@@ -25,7 +25,7 @@ struct cel{
 Pessoa* CriaPessoa(char* nome){
     Pessoa* p = malloc(sizeof(Pessoa));
     p->nome = strdup(nome);
-    p->amigos = CriaAmigos();
+    p->amigos = CriaListPessoas();
     p->playlists = CriaListPL();
     return p;
 }
@@ -97,7 +97,7 @@ void LiberaListPessoas(Amigos* a, int op){
 
 void LiberaPessoa(Pessoa* p){
     free(p->nome);
-    LiberaAmigos(p->amigos, Amizade);
+    LiberaListPessoas(p->amigos, Amizade);
     LiberaListPL(p->playlists);
     free(p);
 }

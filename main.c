@@ -6,7 +6,7 @@
 int main(int argc, char *argv[]) {
     FILE *arqAmizades, *arqPlaylist;
     char diretorio[1000];
-    char nomeArquivo[1000];
+    char nomeArquivo[1100];
 
     //cria diretório e abre o primeiro arquivo "amizades.txt"
 	sprintf(diretorio, "%s", argv[1]);
