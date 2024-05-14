@@ -5,11 +5,11 @@
 
 int main(int argc, char *argv[]) {
     FILE *arqAmizades, *arqPlaylist;
-    char diretorio[1000];
-    char nomeArquivo[1100];
+    char diretorio[100];
+    char nomeArquivo[1000];
 
     //cria diretório e abre o primeiro arquivo "amizades.txt"
-	sprintf(diretorio, "%s", argv[1]);
+	sprintf(diretorio, "Entrada");
 
     sprintf(nomeArquivo, "%s/amizades.txt", diretorio);
     arqAmizades = fopen(nomeArquivo, "r");
@@ -57,7 +57,9 @@ int main(int argc, char *argv[]) {
     LeArquivosDePlaylist(listaPessoas, diretorio);
 
     OrganizaPessoaPorArtista(listaPessoas);
-    GeraPlayedRefatorada(diretorio, listaPessoas);
+    GeraPlayedRefatorada(listaPessoas);
+
+    CriaNovosArquivosPessoa(listaPessoas);
 
     LiberaListPessoas(listaPessoas, ListaGeral);
     fclose(arqAmizades);

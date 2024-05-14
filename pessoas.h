@@ -57,6 +57,9 @@ Faz a análise para criar uma nova playlist para cada artista presente nas músi
 void OrganizaPessoaPorArtista(Lista* pessoas);
 
 //Gera o arquivo “played-refatorada.txt”, printando nome de cada pessoa, numero de playlists e seus nomes
-void GeraPlayedRefatorada(char* diretorio, Lista* pessoas);
+void GeraPlayedRefatorada(Lista* pessoas);
+
+//Para cada pessoa da lista de pessoas, gera arquivos com as playlists atualizadas
+void CriaNovosArquivosPessoa(Lista* pessoas);
 
 #endif

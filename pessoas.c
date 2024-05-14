@@ -179,11 +179,11 @@ void OrganizaPessoaPorArtista(Lista* pessoas){
     }
 }
 
-void GeraPlayedRefatorada(char* diretorio, Lista* pessoas){
+void GeraPlayedRefatorada(Lista* pessoas){
     FILE* PlayedRef;
     char folder[1000], nomeArq[1100];
 
-    sprintf(folder, "%s/Saida", diretorio); //não sei se é assim
+    sprintf(folder, "Saida"); //não sei se é assim
     mkdir(folder, S_IRWXU);
 
     sprintf(nomeArq, "%s/played-refatorada.txt", folder);
@@ -198,4 +198,15 @@ void GeraPlayedRefatorada(char* diretorio, Lista* pessoas){
     }
 
     fclose(PlayedRef);
+}
+
+void CriaNovosArquivosPessoa(Lista* pessoas){
+    Cel* c = pessoas->prim;
+    while(c){
+        char folder[1000];
+        sprintf(folder, "Saida/%s", c->pessoa->nome);
+        mkdir(folder, S_IRWXU);
+        CriaArquivosPlaylist(c->pessoa->playlists, folder);
+        c = c->prox;
+    }
 }

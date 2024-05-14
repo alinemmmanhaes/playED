@@ -137,3 +137,11 @@ void OrganizaPlaylistPorArtista(Playlist* p, void* lista){
         c = c->prox;
     }
 }
+
+void ImprimePlaylist(Playlist* p, FILE* arq){
+    Cel* c = p->prim;
+    while(c){
+        fprintf(arq, "%s - %s\n", c->music->artista, c->music->nome);
+        c->prox;
+    }
+}

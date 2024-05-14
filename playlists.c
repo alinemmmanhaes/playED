@@ -161,3 +161,17 @@ void PLsPlayedRefatorada(ListPL* l, FILE* arq){
         cel = cel->prox;
     }
 }
+
+void CriaArquivosPlaylist(ListPL* l, char* diretorio){
+    Cel* c = l->prim;
+    while(c){
+        char playlisttxt[1100];
+        sprintf(playlisttxt, "%s/%s", diretorio, RetornaNomePlaylist(c->playlist));
+        FILE* arq = fopen(playlisttxt, "w");
+
+        ImprimePlaylist(c->playlist, arq);
+        
+        fclose(arq);
+        c = c->prox;
+    }
+}

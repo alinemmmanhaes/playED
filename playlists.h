@@ -41,4 +41,7 @@ Playlist* ComparaNomePLArtista(char* nome, ListPL* lista);
 //Printa o número de playlists na lista e seus nomes no arquivo “played-refatorada.txt”
 void PLsPlayedRefatorada(ListPL* l, FILE* arq);
 
+//Gera um arquivo txt para cada playlist da lista de playlists, usando o diretório do parâmetro
+void CriaArquivosPlaylist(ListPL* l, char* diretorio);
+
 #endif
