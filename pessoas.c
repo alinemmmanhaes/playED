@@ -2,6 +2,7 @@
 #include "playlists.h"
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 struct pessoa{
     char* nome;
@@ -79,6 +80,7 @@ void RemovePessoa(Amigos* a, Pessoa* p){
         c->prox->ant = c->ant;
     }
 
+    LiberaPessoa(c->pessoa);
     free(c);
 }
 
@@ -169,3 +171,31 @@ void LeArquivosDePlaylist(Lista *pessoas, char *diretorio){
     }
 }
 
+void OrganizaPessoaPorArtista(Lista* pessoas){
+    Cel* c = pessoas->prim;
+    while (c){
+        OrganizaListPLPorArtista(c->pessoa->playlists);
+        c = c->prox;
+    }
+}
+
+void GeraPlayedRefatorada(char* diretorio, Lista* pessoas){
+    FILE* PlayedRef;
+    char folder[1000], nomeArq[1100];
+
+    sprintf(folder, "%s/Saida", diretorio); //não sei se é assim
+    mkdir(folder, S_IRWXU);
+
+    sprintf(nomeArq, "%s/played-refatorada.txt", folder);
+    PlayedRef = fopen(nomeArq, "w");
+
+    Cel* c = pessoas->prim;
+    while(c){
+        sprintf(PlayedRef, "%s;", c->pessoa->nome);
+        PLsPlayedRefatorada(c->pessoa->playlists, PlayedRef);
+        sprintf(PlayedRef, "\n");
+        c = c->prox;
+    }
+
+    fclose(PlayedRef);
+}

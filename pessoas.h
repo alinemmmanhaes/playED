@@ -52,4 +52,11 @@ void InserePLNaPessoa(char *nome, Lista *pessoas, Playlist *pl);
 //Lê cada arquivo de playlist e insere seu conteúdo dentro da lista de playlists de cada pessoa
 void LeArquivosDePlaylist(Lista *pessoas, char *diretorio);
 
+/*Para cada pessoa, analisa as sua lista de playlist
+Faz a análise para criar uma nova playlist para cada artista presente nas músicas*/
+void OrganizaPessoaPorArtista(Lista* pessoas);
+
+//Gera o arquivo “played-refatorada.txt”, printando nome de cada pessoa, numero de playlists e seus nomes
+void GeraPlayedRefatorada(char* diretorio, Lista* pessoas);
+
 #endif

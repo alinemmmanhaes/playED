@@ -56,6 +56,9 @@ int main(int argc, char *argv[]) {
 
     LeArquivosDePlaylist(listaPessoas, diretorio);
 
+    OrganizaPessoaPorArtista(listaPessoas);
+    GeraPlayedRefatorada(diretorio, listaPessoas);
+
     LiberaListPessoas(listaPessoas, ListaGeral);
     fclose(arqAmizades);
     fclose(arqPlaylist);

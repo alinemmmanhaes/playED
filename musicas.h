@@ -34,4 +34,10 @@ char* RetornaNomeArtista(Musica *m);
 //Retorna o nome de uma playlist
 char* RetornaNomePlaylist(Playlist *p);
 
+/*Para cada playlist, analisa as suas músicas
+Faz a análise para criar uma nova playlist para cada artista presente nas músicas
+Se o artista da música já tiver uma playlist, adiciona a música na playlist
+Se não, cria uma playlist, adiciona a ListPL e adiciona a música na playlist*/
+void OrganizaPlaylistPorArtista(Playlist* p, void* lista);
+
 #endif

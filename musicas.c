@@ -1,4 +1,5 @@
 #include "musicas.h"
+#include "playlists.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -78,6 +79,7 @@ void RemoveMusica(Playlist* p, Musica* m){
         c->prox->ant = c->ant;
     }
 
+    LiberaMusica(c->music);
     free(c);
 }
 
@@ -115,4 +117,23 @@ char* RetornaNomeArtista(Musica *m){
 
 char* RetornaNomePlaylist(Playlist *p){
     return p->nome;
+}
+
+void OrganizaPlaylistPorArtista(Playlist* p, void* lista){
+    Cel* c = p->prim;
+    ListPL* listaPL = (ListPL*) lista;
+    while(c){
+        char artista[100];
+        sprintf(artista, "%s.txt", c->music->artista);
+        Playlist* playlist = ComparaNomePLArtista(artista, listaPL);
+        if(playlist){
+            InsereMusica(playlist, c->music);
+        }
+        else{
+            playlist = CriaPlaylist(artista);
+            InserePlaylist(playlist, listaPL);
+            InsereMusica(playlist, c->music);
+        }
+        c = c->prox;
+    }
 }

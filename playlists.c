@@ -63,6 +63,7 @@ void RemovePlaylist(Playlist* p, ListPL* l){
         c->prox->ant = c->ant;
     }
 
+    LiberaPlaylist(c->playlist);
     free(c);
 }
 
@@ -88,6 +89,16 @@ int ExisteEmListPL(Playlist* p, ListPL* l){
     return 0;
 }
 
+int NumeroPlaylistsEmListPL(ListPL* l){
+    Cel* cel = l->prim;
+    int totalPL = 0;
+    while(cel){
+        totalPL++;
+        cel = cel->prox;
+    }
+    return totalPL;
+}
+
 void InsereMusicasNasPLSDaPessoa(ListPL* l, char *diretorio){
     FILE *playlist;
     Cel* c = l->prim;
@@ -104,5 +115,49 @@ void InsereMusicasNasPLSDaPessoa(ListPL* l, char *diretorio){
         
         fclose(playlist);
         c = c->prox;
+    }
+}
+
+void OrganizaListPLPorArtista(ListPL* l){
+    int totalPL = NumeroPlaylistsEmListPL(l);
+
+    //Agora analisaremos apenas as playlists originais, sem acessar as novas com nome de artista
+    Cel* cel = l->prim;
+    for(int i=0; i<totalPL; i++){
+        OrganizaPlaylistPorArtista(cel->playlist, l);
+        cel = cel->prox;
+    }
+
+    //Removendo as playlist originais, depois de analisadas
+    cel = l->prim;
+    Cel* aux = cel;
+    for(int i=0; i<totalPL; i++){
+        cel = aux;
+        aux = cel->prox;
+        RemovePlaylist(cel->playlist, l);
+    }
+}
+
+Playlist* ComparaNomePLArtista(char* nome, ListPL* lista){
+    Cel* c = lista->prim;
+    while(c){
+        if(strcmp(nome, RetornaNomePlaylist(c->playlist)) == 0){
+            return c->playlist;
+        }
+        c = c->prox;
+    }
+    return NULL;
+}
+
+void PLsPlayedRefatorada(ListPL* l, FILE* arq){
+    //Contabiliza o número de playlists dentro da listPL e imprime no arquivo
+    int totalPL = NumeroPlaylistsEmListPL(l);
+    sprintf(arq, "%d", totalPL);
+
+    //imprime no arquivo o nome de cada playlist da lista
+    Cel* cel = l->prim;
+    while(cel){
+        sprintf(arq, ";%s", RetornaNomePlaylist(cel->playlist));
+        cel = cel->prox;
     }
 }
