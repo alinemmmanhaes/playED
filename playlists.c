@@ -63,7 +63,7 @@ void RemovePlaylist(Playlist* p, ListPL* l){
         c->prox->ant = c->ant;
     }
 
-    LiberaPlaylist(c->playlist);
+    LiberaPlaylist(c->playlist, SeparaArtista);
     free(c);
 }
 
@@ -72,7 +72,7 @@ void LiberaListPL(ListPL* l){
     while(aux){
         c = aux;
         aux = aux->prox;
-        LiberaPlaylist(c->playlist);
+        LiberaPlaylist(c->playlist, UsoGeral);
         free(c);
     }
     free(l);
@@ -174,4 +174,20 @@ void CriaArquivosPlaylist(ListPL* l, char* diretorio){
         fclose(arq);
         c = c->prox;
     }
+}
+
+int ComparaPlaylists(ListPL *l1, ListPL *l2){
+    Cel *c = l1->prim;
+    Cel *p = l2->prim;
+    int similar = 0;
+    while(c){
+        while(p){
+            similar += ComparaMusicas(c->playlist, p->playlist);
+            p = p->prox;
+        }
+        c = c->prox;
+        p = l2->prim;
+    }
+    
+    return similar;
 }

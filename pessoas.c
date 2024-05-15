@@ -130,8 +130,9 @@ Pessoa *EncontraPessoaNaLista(char *nome, Lista* pessoas){
 
 void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas){
     Pessoa* pessoa1 = NULL, *pessoa2 = NULL;
-    Cel* c = pessoas->prim;
-    /*while (c){
+    
+    /*Cel* c = pessoas->prim;
+    while (c){
         if(strcmp(c->pessoa->nome, nome1) == 0){
             pessoa1 = c->pessoa;
             break;
@@ -159,7 +160,6 @@ void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas){
 
 void InserePLNaPessoa(char *nome, Lista *pessoas, Playlist *pl){
     Pessoa* pessoa = EncontraPessoaNaLista(nome, pessoas);
-    //Cel* c = pessoas->prim;
     InserePlaylist(pl, pessoa->playlists);
 }
 
@@ -209,4 +209,43 @@ void CriaNovosArquivosPessoa(Lista* pessoas){
         CriaArquivosPlaylist(c->pessoa->playlists, folder);
         c = c->prox;
     }
+}
+
+int PessoaJaFoiAnalisada(Lista *pessoas, Pessoa *p1, Pessoa *p2){
+    Cel* c = pessoas->prim;
+    while(c){
+        if(strcmp(c->pessoa->nome, p2->nome) == 0){ 
+            return 1;
+        }
+        else if(strcmp(c->pessoa->nome, p1->nome) == 0){
+            return 0;
+        }
+        c = c->prox;
+    }
+    return 0;
+}
+
+
+void VerificaSimilaridades(Lista* pessoas){
+    FILE* Similaridades;
+    char nomeArq[1100];
+
+    sprintf(nomeArq, "Saida/similaridades.txt");
+    Similaridades = fopen(nomeArq, "w");
+
+    Cel* c = pessoas->prim;
+    Cel* p = c->pessoa->amigos->prim;
+    while(c){
+        while(p){
+            if(!PessoaJaFoiAnalisada(pessoas, c->pessoa, p->pessoa)){
+                int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists);
+                sprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
+            }
+            p = p->prox;
+        }
+        c = c->prox;
+        p = c->pessoa->amigos->prim;
+    }
+    
+    fclose(Similaridades);
 }

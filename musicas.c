@@ -83,12 +83,14 @@ void RemoveMusica(Playlist* p, Musica* m){
     free(c);
 }
 
-void LiberaPlaylist(Playlist* p){
+void LiberaPlaylist(Playlist* p, int op){
     Cel* c, * aux = p->prim;
     while(aux){
         c = aux;
         aux = aux->prox;
-        LiberaMusica(c->music);
+        if(op == UsoGeral){
+            LiberaMusica(c->music);
+        }
         free(c);
     }
     free(p);
@@ -144,4 +146,22 @@ void ImprimePlaylistEmArquivo(Playlist* p, FILE* arq){
         fprintf(arq, "%s - %s\n", c->music->artista, c->music->nome);
         c = c->prox;
     }
+}
+
+int ComparaMusicas(Playlist *p1, Playlist *p2){
+    Cel *c1 = p1->prim;
+    Cel * c2= p2->prim;
+    int qtd = 0;
+    while(c1){
+        while(c2){
+            if(strcmp(c1->music->nome, c2->music->nome) == 0 && strcmp(c1->music->artista, c2->music->artista) == 0){ 
+                qtd++;
+                //pode dar um break aqui ou pode ter musicas repetidas na playlist?
+            }
+            c2 = c2->prox;
+        }
+        c1 = c1->prox;
+        c2= p2->prim;
+    }
+    return qtd;
 }
