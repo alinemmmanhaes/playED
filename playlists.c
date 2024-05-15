@@ -123,7 +123,7 @@ void OrganizaListPLPorArtista(ListPL* l){
 
     //Agora analisaremos apenas as playlists originais, sem acessar as novas com nome de artista
     Cel* cel = l->prim;
-    for(int i=0; i<totalPL; i++){
+    for(int i=0; i < totalPL; i++){
         OrganizaPlaylistPorArtista(cel->playlist, l);
         cel = cel->prox;
     }
@@ -131,7 +131,7 @@ void OrganizaListPLPorArtista(ListPL* l){
     //Removendo as playlist originais, depois de analisadas
     cel = l->prim;
     Cel* aux = cel;
-    for(int i=0; i<totalPL; i++){
+    for(int i=0; i < totalPL; i++){
         cel = aux;
         aux = cel->prox;
         RemovePlaylist(cel->playlist, l);
@@ -152,12 +152,12 @@ Playlist* ComparaNomePLArtista(char* nome, ListPL* lista){
 void PLsPlayedRefatorada(ListPL* l, FILE* arq){
     //Contabiliza o número de playlists dentro da listPL e imprime no arquivo
     int totalPL = NumeroPlaylistsEmListPL(l);
-    sprintf(arq, "%d", totalPL);
+    sprintf(arq, "%d;", totalPL);
 
     //imprime no arquivo o nome de cada playlist da lista
     Cel* cel = l->prim;
     while(cel){
-        sprintf(arq, ";%s", RetornaNomePlaylist(cel->playlist));
+        sprintf(arq, "%s", RetornaNomePlaylist(cel->playlist));
         cel = cel->prox;
     }
 }
@@ -169,7 +169,7 @@ void CriaArquivosPlaylist(ListPL* l, char* diretorio){
         sprintf(playlisttxt, "%s/%s", diretorio, RetornaNomePlaylist(c->playlist));
         FILE* arq = fopen(playlisttxt, "w");
 
-        ImprimePlaylist(c->playlist, arq);
+        ImprimePlaylistEmArquivo(c->playlist, arq);
         
         fclose(arq);
         c = c->prox;

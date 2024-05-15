@@ -131,17 +131,17 @@ void OrganizaPlaylistPorArtista(Playlist* p, void* lista){
         }
         else{
             playlist = CriaPlaylist(artista);
-            InserePlaylist(playlist, listaPL);
             InsereMusica(playlist, c->music);
+            InserePlaylist(playlist, listaPL);
         }
         c = c->prox;
     }
 }
 
-void ImprimePlaylist(Playlist* p, FILE* arq){
+void ImprimePlaylistEmArquivo(Playlist* p, FILE* arq){
     Cel* c = p->prim;
     while(c){
         fprintf(arq, "%s - %s\n", c->music->artista, c->music->nome);
-        c->prox;
+        c = c->prox;
     }
 }

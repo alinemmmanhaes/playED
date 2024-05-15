@@ -41,6 +41,6 @@ Se não, cria uma playlist, adiciona a ListPL e adiciona a música na playlist*/
 void OrganizaPlaylistPorArtista(Playlist* p, void* lista);
 
 //Imprime cada música da playlist no arquivo passado por parâmetro no formato "artista - nomedamúsica"
-void ImprimePlaylist(Playlist* p, FILE* arq);
+void ImprimePlaylistEmArquivo(Playlist* p, FILE* arq);
 
 #endif
