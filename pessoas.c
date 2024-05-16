@@ -193,9 +193,9 @@ void GeraPlayedRefatorada(Lista* pessoas){
 
     Cel* c = pessoas->prim;
     while(c){
-        sprintf(PlayedRef, "%s;", c->pessoa->nome);
+        fprintf(PlayedRef, "%s;", c->pessoa->nome);
         PLsPlayedRefatorada(c->pessoa->playlists, PlayedRef);
-        sprintf(PlayedRef, "\n");
+        fprintf(PlayedRef, "\n");
         c = c->prox;
     }
 
@@ -242,7 +242,7 @@ void VerificaSimilaridades(Lista* pessoas){
             //Verifica se a amizade já foi analisada
             if(p->pessoa->similaridades == 0){
                 int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists);
-                sprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
+                fprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
             }
             p = p->prox;
         }

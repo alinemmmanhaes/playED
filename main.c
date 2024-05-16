@@ -33,17 +33,22 @@ int main(int argc, char *argv[]) {
     }
 
     //le todas as amizades e correlaciona as pessoas envolvidas
-    while(fscanf(arqAmizades, "%s;%s%*c", nome, nome2) == 2){
+    while(fscanf(arqAmizades, "%[^;];%[^\n]%*c", nome, nome2) == 2){
         RelacionaAmigos(nome, nome2, listaPessoas);
     }
 
     sprintf(nomeArquivo, "%s/playlists.txt", diretorio);
     arqPlaylist = fopen(nomeArquivo, "r");
 
+    if (arqPlaylist == NULL) {
+        printf("O arquivo playlists.txt do diretorio %s nao existe!\n", diretorio);
+        exit(1);
+    }
+
     char nomePlaylist[100];
     int qtdPlaylist;
     //Lê as playlist de cada pessoa e adiciona à sua respectiva lista de playlists
-    while(fscanf(arqPlaylist, "%s;%d;", nome, &qtdPlaylist) == 2){
+    while(fscanf(arqPlaylist, "%[^;];%d;", nome, &qtdPlaylist) == 2){
         
         for(int i = 0; i < qtdPlaylist; i++){
             fscanf(arqPlaylist, "%[^;\n]%*c", nomePlaylist);
@@ -62,7 +67,7 @@ int main(int argc, char *argv[]) {
     VerificaSimilaridades(listaPessoas);
 
     CriaNovosArquivosPessoa(listaPessoas);
-    
+
     LiberaListPessoas(listaPessoas, ListaGeral);
     fclose(arqAmizades);
     fclose(arqPlaylist);
