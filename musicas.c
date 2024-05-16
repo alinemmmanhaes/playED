@@ -137,6 +137,9 @@ void OrganizaPlaylistPorArtista(Playlist* p, void* lista){
             if(!ExisteEmPlaylist(playlist, c->music)){
                 InsereMusica(playlist, c->music);
             }
+            else{
+                LiberaMusica(c->music);
+            }
         }
         else{
             playlist = CriaPlaylist(artista);
