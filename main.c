@@ -59,10 +59,10 @@ int main(int argc, char *argv[]) {
     OrganizaPessoaPorArtista(listaPessoas);
     GeraPlayedRefatorada(listaPessoas);
 
-    CriaNovosArquivosPessoa(listaPessoas);
-
     VerificaSimilaridades(listaPessoas);
 
+    CriaNovosArquivosPessoa(listaPessoas);
+    
     LiberaListPessoas(listaPessoas, ListaGeral);
     fclose(arqAmizades);
     fclose(arqPlaylist);

@@ -52,7 +52,7 @@ void OrganizaPlaylistPorArtista(Playlist* p, void* lista);
 //Imprime cada música da playlist no arquivo passado por parâmetro no formato "artista - nomedamúsica"
 void ImprimePlaylistEmArquivo(Playlist* p, FILE* arq);
 
-//Compara a qtd de músicas similares entre 2 playlists
+//Compara a qtd de músicas similares entre 2 playlists, retornando essa qtd
 int ComparaMusicas(Playlist *p1, Playlist *p2);
 
 #endif

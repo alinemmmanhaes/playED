@@ -8,6 +8,7 @@ struct pessoa{
     char* nome;
     Amigos* amigos;
     ListPL* playlists;
+    int similaridades;
 };
 
 typedef struct cel Cel;
@@ -28,6 +29,7 @@ Pessoa* CriaPessoa(char* nome){
     p->nome = strdup(nome);
     p->amigos = CriaListPessoas();
     p->playlists = CriaListPL();
+    p->similaridades = 0;
     return p;
 }
 
@@ -237,12 +239,14 @@ void VerificaSimilaridades(Lista* pessoas){
     Cel* p = c->pessoa->amigos->prim;
     while(c){
         while(p){
-            if(!PessoaJaFoiAnalisada(pessoas, c->pessoa, p->pessoa)){
+            //Verifica se a amizade já foi analisada
+            if(p->pessoa->similaridades == 0){
                 int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists);
                 sprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
             }
             p = p->prox;
         }
+        c->pessoa->similaridades = 1;
         c = c->prox;
         p = c->pessoa->amigos->prim;
     }

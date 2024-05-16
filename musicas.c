@@ -156,7 +156,7 @@ int ComparaMusicas(Playlist *p1, Playlist *p2){
         while(c2){
             if(strcmp(c1->music->nome, c2->music->nome) == 0 && strcmp(c1->music->artista, c2->music->artista) == 0){ 
                 qtd++;
-                //pode dar um break aqui ou pode ter musicas repetidas na playlist?
+                break;
             }
             c2 = c2->prox;
         }

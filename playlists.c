@@ -102,13 +102,24 @@ int NumeroPlaylistsEmListPL(ListPL* l){
 void InsereMusicasNasPLSDaPessoa(ListPL* l, char *diretorio){
     FILE *playlist;
     Cel* c = l->prim;
-    char nomeArq[1000], artista[100], music[100];
+    char nomeArq[1000], artista[200];
 
     while(c){
         sprintf(nomeArq, "%s/%s", diretorio, RetornaNomePlaylist(c->playlist));
         playlist = fopen(nomeArq, "r");
 
-        while(fscanf(playlist, "%[^-]- %[^\n]\n", artista, music) == 2){//acho que tá meio errado isso aqui
+        while(fscanf(playlist, "%[^\n]%*c", artista) == 1){
+            int i = 0;
+            while(1){
+                if(artista[i] == ' '){
+                    if(artista[i+1] == '-'){
+                        artista[i] = '\0';
+                        break;
+                    }
+                }
+                i++;
+            }
+            char* music = &artista[i+3];
             Musica *musica = CriaMusica(music, artista);
             InsereMusica(c->playlist, musica);
         }
