@@ -242,7 +242,7 @@ void VerificaSimilaridades(Lista* pessoas){
         while(p){
             //Verifica se a amizade já foi analisada
             if(p->pessoa->similaridades == 0){
-                int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists);
+                int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists, Similaridades);
                 fprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
             }
             p = p->prox;

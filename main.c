@@ -8,10 +8,10 @@ int main(int argc, char *argv[]) {
     char diretorio[100];
     char nomeArquivo[1000];
 
-    //cria diretório e abre o primeiro arquivo "amizades.txt"
+    //cria diretório e abre o primeiro arquivo "amizade.txt"
 	sprintf(diretorio, "Entrada");
 
-    sprintf(nomeArquivo, "%s/amizades.txt", diretorio);
+    sprintf(nomeArquivo, "%s/amizade.txt", diretorio);
     arqAmizades = fopen(nomeArquivo, "r");
 
     if (arqAmizades == NULL) {

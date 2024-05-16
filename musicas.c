@@ -106,7 +106,7 @@ void LiberaMusica(Musica* m){
 int ExisteEmPlaylist(Playlist* p, Musica* m){
     Cel* c = p->prim;
     while(c){
-        if(c->music = m){
+        if(strcmp(c->music->nome, m->nome) == 0){
             return 1;
         }
         c = c->prox;
@@ -116,6 +116,10 @@ int ExisteEmPlaylist(Playlist* p, Musica* m){
 
 char* RetornaNomeArtista(Musica *m){
     return m->artista;
+}
+
+char* RetornaNomeMusica(Musica *m){
+    return m->nome;
 }
 
 char* RetornaNomePlaylist(Playlist *p){
@@ -130,7 +134,9 @@ void OrganizaPlaylistPorArtista(Playlist* p, void* lista){
         sprintf(artista, "%s.txt", c->music->artista);
         Playlist* playlist = ComparaNomePLArtista(artista, listaPL);
         if(playlist){
-            InsereMusica(playlist, c->music);
+            if(!ExisteEmPlaylist(playlist, c->music)){
+                InsereMusica(playlist, c->music);
+            }
         }
         else{
             playlist = CriaPlaylist(artista);
@@ -150,8 +156,8 @@ void ImprimePlaylistEmArquivo(Playlist* p, FILE* arq){
 }
 
 int ComparaMusicas(Playlist *p1, Playlist *p2){
-    Cel *c1 = p1->prim;
-    Cel * c2= p2->prim;
+    Cel* c1 = p1->prim;
+    Cel* c2= p2->prim;
     int qtd = 0;
     while(c1){
         while(c2){

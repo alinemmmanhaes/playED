@@ -38,6 +38,9 @@ int ExisteEmPlaylist(Playlist* p, Musica* m);
 //Retorna o nome do artista de uma música
 char* RetornaNomeArtista(Musica *m);
 
+//Retorna o nome de uma música
+char* RetornaNomeMusica(Musica *m);
+
 //Retorna o nome de uma playlist
 char* RetornaNomePlaylist(Playlist *p);
 

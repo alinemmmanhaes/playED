@@ -187,13 +187,14 @@ void CriaArquivosPlaylist(ListPL* l, char* diretorio){
     }
 }
 
-int ComparaPlaylists(ListPL *l1, ListPL *l2){
+int ComparaPlaylists(ListPL *l1, ListPL *l2, FILE* simi){
     Cel *c = l1->prim;
     Cel *p = l2->prim;
     int similar = 0;
     while(c){
         while(p){
             similar += ComparaMusicas(c->playlist, p->playlist);
+            //fprintf(simi, "%s %d\n", RetornaNomePlaylist(c->playlist), similar);
             p = p->prox;
         }
         c = c->prox;

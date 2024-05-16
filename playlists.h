@@ -49,6 +49,6 @@ void PLsPlayedRefatorada(ListPL* l, FILE* arq);
 void CriaArquivosPlaylist(ListPL* l, char* diretorio);
 
 //Compara 2 listas de playlists e retorna a qtd de musicas similares
-int ComparaPlaylists(ListPL *l1, ListPL *l2);
+int ComparaPlaylists(ListPL *l1, ListPL *l2, FILE* simi);
 
 #endif
