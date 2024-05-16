@@ -238,6 +238,7 @@ void VerificaSimilaridades(Lista* pessoas){
     Cel* c = pessoas->prim;
     Cel* p = c->pessoa->amigos->prim;
     while(c){
+        p = c->pessoa->amigos->prim;
         while(p){
             //Verifica se a amizade já foi analisada
             if(p->pessoa->similaridades == 0){
@@ -248,7 +249,6 @@ void VerificaSimilaridades(Lista* pessoas){
         }
         c->pessoa->similaridades = 1;
         c = c->prox;
-        p = c->pessoa->amigos->prim;
     }
     
     fclose(Similaridades);

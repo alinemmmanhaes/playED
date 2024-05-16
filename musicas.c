@@ -93,6 +93,7 @@ void LiberaPlaylist(Playlist* p, int op){
         }
         free(c);
     }
+    free(p->nome);
     free(p);
 }
 

@@ -163,12 +163,12 @@ Playlist* ComparaNomePLArtista(char* nome, ListPL* lista){
 void PLsPlayedRefatorada(ListPL* l, FILE* arq){
     //Contabiliza o número de playlists dentro da listPL e imprime no arquivo
     int totalPL = NumeroPlaylistsEmListPL(l);
-    fprintf(arq, "%d;", totalPL);
+    fprintf(arq, "%d", totalPL);
 
     //imprime no arquivo o nome de cada playlist da lista
     Cel* cel = l->prim;
     while(cel){
-        fprintf(arq, "%s", RetornaNomePlaylist(cel->playlist));
+        fprintf(arq, ";%s", RetornaNomePlaylist(cel->playlist));
         cel = cel->prox;
     }
 }
