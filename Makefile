@@ -1,7 +1,10 @@
-all: principal clean
+all: principal exec 
 
 principal: main.c pessoas.c musicas.c playlists.c
 	gcc *.c -o main
 
+exec: main
+	./main
+
 clean:
-	rm -rf *.o principal
+	rm -rf Saida
