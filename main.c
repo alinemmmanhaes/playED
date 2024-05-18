@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     arqAmizades = fopen(nomeArquivo, "r");
 
     if (arqAmizades == NULL) {
-        printf("O arquivo amizades.txt do diretorio %s nao existe!\n", diretorio);
+        printf("O arquivo amizade.txt do diretorio %s nao existe!\n", diretorio);
         exit(1);
     }
 

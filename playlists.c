@@ -194,7 +194,6 @@ int ComparaPlaylists(ListPL *l1, ListPL *l2, FILE* simi){
     while(c){
         while(p){
             similar += ComparaMusicas(c->playlist, p->playlist);
-            //fprintf(simi, "%s %d\n", RetornaNomePlaylist(c->playlist), similar);
             p = p->prox;
         }
         c = c->prox;

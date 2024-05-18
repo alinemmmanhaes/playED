@@ -132,24 +132,6 @@ Pessoa *EncontraPessoaNaLista(char *nome, Lista* pessoas){
 
 void RelacionaAmigos(char* nome1, char* nome2, Lista* pessoas){
     Pessoa* pessoa1 = NULL, *pessoa2 = NULL;
-    
-    /*Cel* c = pessoas->prim;
-    while (c){
-        if(strcmp(c->pessoa->nome, nome1) == 0){
-            pessoa1 = c->pessoa;
-            break;
-        }
-        c = c->prox;
-    }*/
-
-    /*c = pessoas->prim;
-    while (c){
-        if(strcmp(c->pessoa->nome, nome2) == 0){
-            pessoa2 = c->pessoa;
-            break;
-        }
-        c = c->prox;
-    }*/
 
     pessoa1 = EncontraPessoaNaLista(nome1, pessoas);
     pessoa2 = EncontraPessoaNaLista(nome2, pessoas);
@@ -185,7 +167,7 @@ void GeraPlayedRefatorada(Lista* pessoas){
     FILE* PlayedRef;
     char folder[1000], nomeArq[1100];
 
-    sprintf(folder, "Saida"); //não sei se é assim
+    sprintf(folder, "Saida"); 
     mkdir(folder, S_IRWXU);
 
     sprintf(nomeArq, "%s/played-refatorada.txt", folder);
@@ -240,7 +222,7 @@ void VerificaSimilaridades(Lista* pessoas){
     while(c){
         p = c->pessoa->amigos->prim;
         while(p){
-            //Verifica se a amizade já foi analisada
+            //Verifica se a pessoa já foi analisada anteriormente
             if(p->pessoa->similaridades == 0){
                 int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists, Similaridades);
                 fprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
