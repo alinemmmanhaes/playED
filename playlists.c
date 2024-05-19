@@ -206,25 +206,19 @@ int ComparaPlaylists(ListPL *l1, ListPL *l2){
 void MergePlaylists(ListPL *l1, ListPL *l2){
     Cel *c = l1->prim;
     Cel *p = l2->prim;
-    Playlist *merge = CriaPlaylist(RetornaNomePlaylist(c->playlist));
     
     while(c){
+        p = l2->prim;
         while(p){
             if(ComparaNomePlaylists(c->playlist, p->playlist)){
-                merge = MergeMusicas(c->playlist, p->playlist);
-                LiberaPlaylist(c->playlist, UsoEspecifico);
-                LiberaPlaylist(p->playlist, UsoEspecifico);
-                InserePlaylist(merge, l1);
-                InserePlaylist(merge, l2);
+
+                //Função adiciona as músicas da playlist1 à playlist2
+                MergeMusicas(c->playlist, p->playlist);
+                MergeMusicas(p->playlist, c->playlist);
                 break;
             }
             p = p->prox;
         }
         c = c->prox;
-        p = l2->prim;
-    }
-    
-    if(EstaVaziaPlaylist(merge)){
-        LiberaPlaylist(merge, UsoGeral);
     }
 }

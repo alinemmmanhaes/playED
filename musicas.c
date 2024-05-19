@@ -83,24 +83,28 @@ void RemoveMusica(Playlist* p, Musica* m){
     free(c);
 }
 
-void LiberaPlaylist(Playlist* p, int op){
-    Cel *c = NULL, *aux = p->prim;
-    while(aux){
-        c = aux;
-        aux = aux->prox;
-        if(op == UsoGeral){
-            LiberaMusica(c->music);
-        }
-        free(c);
+void LiberaMusica(Musica* m){
+    if(m != NULL){
+        free(m->nome);
+        free(m->artista);
+        free(m);
     }
-    free(p->nome);
-    free(p);
 }
 
-void LiberaMusica(Musica* m){
-    free(m->nome);
-    free(m->artista);
-    free(m);
+void LiberaPlaylist(Playlist* p, int op){
+    Cel *prox = NULL, *atual = p->prim;
+    
+    while(atual){
+        prox = atual->prox;
+        if(op == UsoGeral){
+            LiberaMusica(atual->music);
+        }
+        free(atual);
+        atual = prox;
+    }
+    
+    free(p->nome);
+    free(p);
 }
 
 int ExisteEmPlaylist(Playlist* p, Musica* m){
@@ -183,43 +187,29 @@ int ComparaNomePlaylists(Playlist *p1, Playlist *p2){
     return 0;
 }
 
-Playlist *MergeMusicas(Playlist *p1, Playlist *p2){
+void *MergeMusicas(Playlist *p1, Playlist *p2){
     Cel* c1 = p1->prim;
     Cel* c2= p2->prim;
-    Playlist *nova = CriaPlaylist(p1->nome);
     
     while(c1){
-        InsereMusica(nova, c1->music);
-        c1 = c1->prox;
-    }
-    c1 = nova->prim;
-    while(c2){
         int flag = 0;
-        c1 = nova->prim;
-        while(c1){
-            //Verifica se existe a mesma música em ambas as playlists
-            if(strcmp(c2->music->nome, c1->music->nome) == 0) { 
+        c2 = p2->prim;
+        while(c2){
+            if(strcmp(c1->music->nome, c2->music->nome) == 0){
                 flag = 0;
                 break;
             }
             else {
                 flag = 1;
             }
-            c1 = c1->prox;
+            c2 = c2->prox;
         }
-        
         if(flag){
-            InsereMusica(nova, c2->music);
+            Musica *m = CriaMusica(c1->music->nome, c1->music->artista);
+            InsereMusica(p2, m);
         }
-        c2 = c2->prox;
+        c1 = c1->prox;
     }
 
-    return nova;
 }
 
-int EstaVaziaPlaylist(Playlist *p1){
-    if(p1->prim == NULL && p1->ult == NULL){
-        return 1;
-    }
-    return 0;
-}

@@ -88,8 +88,9 @@ void RemovePessoa(Amigos* a, Pessoa* p){
     free(c);
 }
 
-void LiberaListPessoas(Amigos* a, int op){
-    Cel* c, * aux = a->prim;
+void LiberaListPessoas(Lista* pessoas, int op){
+    Cel *c = NULL, *aux = pessoas->prim;
+
     while(aux){
         c = aux;
         aux = aux->prox;
@@ -98,7 +99,7 @@ void LiberaListPessoas(Amigos* a, int op){
         }
         free(c);
     }
-    free(a);
+    free(pessoas);
 }
 
 void LiberaPessoa(Pessoa* p){
@@ -211,7 +212,6 @@ int PessoaJaFoiAnalisada(Lista *pessoas, Pessoa *p1, Pessoa *p2){
     return 0;
 }
 
-
 void VerificaSimilaridades(Lista* pessoas){
     FILE* Similaridades;
     char nomeArq[1100];
@@ -242,14 +242,16 @@ void ZeraAnalisePessoas(Lista *pessoas){
     Cel *c = pessoas->prim;
     while(c){
         c->pessoa->jaAnalisada = 0;
+        c = c->prox;
     }
 }
+
 void RealizaMergePlaylists(Lista* pessoas){
     Cel *c = pessoas->prim;
     Cel *p = c->pessoa->amigos->prim;
-    
+   
     ZeraAnalisePessoas(pessoas);
-
+    
     while(c){
         p = c->pessoa->amigos->prim;
         while(p){
