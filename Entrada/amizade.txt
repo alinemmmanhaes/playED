@@ -1,0 +1,5 @@
+Arthur;Pedro;Ana;Zeca
+Arthur;Zeca
+Arthur;Ana
+Zeca;Ana
+Pedro;Ana

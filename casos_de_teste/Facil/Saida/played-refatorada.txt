@@ -1,0 +1,4 @@
+Arthur;18;Queen.txt;Panic! At The Disco.txt;Pentatonix.txt;Glee Cast.txt;The Forest Rangers.txt;Freddie Mercury.txt;Lu & Robertinho.txt;Brooklyn Duo.txt;Marc Martel.txt;Flavio Mendes.txt;Pato Fu.txt;Jake Shimabukuro.txt;Pink Floyd.txt;MC Menininho.txt;Jerry Smith.txt;Mc Kevin.txt;MC Gustta.txt;Parangolé.txt
+Pedro;4;Lady Gaga.txt;Rihanna.txt;Ariana Grande.txt;Pink Floyd.txt
+Ana;4;Henrique & Juliano.txt;Diego & Victor Hugo.txt;Zé Neto & Cristiano.txt;Michel Teló.txt
+Zeca;13;Foghat.txt;Poison.txt;Pat Benatar.txt;Cream.txt;Rage Against The Machine.txt;Sonic Youth.txt;Henrique & Juliano.txt;Diego & Victor Hugo.txt;Zé Neto & Cristiano.txt;Michel Teló.txt;Lady Gaga.txt;Rihanna.txt;Ariana Grande.txt

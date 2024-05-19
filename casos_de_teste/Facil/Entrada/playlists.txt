@@ -1,0 +1,4 @@
+Arthur;3;bohemian-muito.txt;pink-floyd.txt;pagofunk.txt
+Pedro;2;poker.txt;dark-side-of-the-moon.txt
+Ana;1;churras-e-truco.txt
+Zeca;3;guitar-hero3.txt;churras-e-truco.txt;poker.txt

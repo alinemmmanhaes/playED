@@ -4,6 +4,8 @@
 #include <string.h>
 #include <sys/stat.h>
 
+#include <errno.h>
+
 struct pessoa{
     char* nome;
     Amigos* amigos;
@@ -184,7 +186,7 @@ void GeraPlayedRefatorada(Lista* pessoas){
     fclose(PlayedRef);
 }
 
-/*void CriaNovosArquivosPessoa(Lista* pessoas){
+void CriaNovosArquivosPessoa(Lista* pessoas){
     Cel* c = pessoas->prim;
     while(c){
         char folder[1000];
@@ -193,7 +195,7 @@ void GeraPlayedRefatorada(Lista* pessoas){
         CriaArquivosPlaylist(c->pessoa->playlists, folder);
         c = c->prox;
     }
-}*/
+}
 
 int PessoaJaFoiAnalisada(Lista *pessoas, Pessoa *p1, Pessoa *p2){
     Cel* c = pessoas->prim;
@@ -261,16 +263,11 @@ void RealizaMergePlaylists(Lista* pessoas){
     }
 }
 
-void CriaNovosArquivosPessoa(Lista* pessoas, int op){
+void CriaArquivoMergePessoa(Lista* pessoas){
     Cel* c = pessoas->prim;
     while(c){
         char folder[1000];
-        if(op == Merge){
-            sprintf(folder, "Saida/Merge/%s", c->pessoa->nome);
-        }
-        else {
-            sprintf(folder, "Saida/%s", c->pessoa->nome);
-        }
+        sprintf(folder, "Merge/%s", c->pessoa->nome);
         mkdir(folder, S_IRWXU);
         CriaArquivosPlaylist(c->pessoa->playlists, folder);
         c = c->prox;
