@@ -66,11 +66,12 @@ int main(int argc, char *argv[]) {
 
     VerificaSimilaridades(listaPessoas);
 
-    //CriaNovosArquivosPessoa(listaPessoas);
+    CriaNovosArquivosPessoa(listaPessoas);
     
-    RealizaMergePlaylists(listaPessoas);
-    CriaNovosArquivosPessoa(listaPessoas);//
+    //RealizaMergePlaylists(listaPessoas);
     //CriaArquivoMergePessoa(listaPessoas);
+    //CriaNovosArquivosPessoa(listaPessoas);// usei só pra testar a função merge, já q CriaArquivoMergePessoa tá dando erro,
+                                            //aí vai tudo para a pasta "Saida"
 
     LiberaListPessoas(listaPessoas, ListaGeral);
     fclose(arqAmizades);

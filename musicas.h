@@ -61,7 +61,7 @@ int ComparaMusicas(Playlist *p1, Playlist *p2);
 //Compara os nomes de duas playlists e retorna 1 se forem iguais, 0 caso contrário
 int ComparaNomePlaylists(Playlist *p1, Playlist *p2);
 
-/*Playlist *MergeMusicas(Playlist *p1, Playlist *p2);*/
+//Adiciona na p2 músicas da p1 que ainda não estejam na p2
 void *MergeMusicas(Playlist *p1, Playlist *p2);
 
 #endif

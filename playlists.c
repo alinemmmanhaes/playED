@@ -211,7 +211,6 @@ void MergePlaylists(ListPL *l1, ListPL *l2){
         p = l2->prim;
         while(p){
             if(ComparaNomePlaylists(c->playlist, p->playlist)){
-
                 //Função adiciona as músicas da playlist1 à playlist2
                 MergeMusicas(c->playlist, p->playlist);
                 MergeMusicas(p->playlist, c->playlist);

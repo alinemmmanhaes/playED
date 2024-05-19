@@ -195,15 +195,18 @@ void *MergeMusicas(Playlist *p1, Playlist *p2){
         int flag = 0;
         c2 = p2->prim;
         while(c2){
+            //Sinaliza caso as músicas sejam iguais, e sai do loop
             if(strcmp(c1->music->nome, c2->music->nome) == 0){
                 flag = 0;
                 break;
             }
+            //Sinaliza que as músicas são diferentes
             else {
                 flag = 1;
             }
             c2 = c2->prox;
         }
+        //Se as músicas não forem iguais, adiciona a música da p1 à p2
         if(flag){
             Musica *m = CriaMusica(c1->music->nome, c1->music->artista);
             InsereMusica(p2, m);

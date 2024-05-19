@@ -76,8 +76,10 @@ int PessoaJaFoiAnalisada(Lista *pessoas, Pessoa *p1, Pessoa *p2);
 //Gera o arquivo “similaridades.txt”, printando nome de cada pessoa e amigo, e a qtd de musicas similares entre eles
 void VerificaSimilaridades(Lista* pessoas);
 
+//Realiza o merge entre as playlists de cada pessoa com as playlists(de mesmo artista/banda) de seus amigos
 void RealizaMergePlaylists(Lista* pessoas);
 
+//Gera a pasta Merge e os arquivos de playlists de cada pessoa após realizar o merge
 void CriaArquivoMergePessoa(Lista* pessoas);
 
 #endif

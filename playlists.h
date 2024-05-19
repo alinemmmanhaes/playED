@@ -51,6 +51,7 @@ void CriaArquivosPlaylist(ListPL* l, char* diretorio);
 //Compara 2 listas de playlists e retorna a qtd de musicas similares
 int ComparaPlaylists(ListPL *l1, ListPL *l2);
 
+//Realiza o merge entre duas listas de playlists, quando existirem playlists de mesmo nome em ambas as listas
 void MergePlaylists(ListPL *l1, ListPL *l2);
 
 #endif
