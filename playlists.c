@@ -63,7 +63,7 @@ void RemovePlaylist(Playlist* p, ListPL* l){
         c->prox->ant = c->ant;
     }
 
-    LiberaPlaylist(c->playlist, SeparaArtista);
+    LiberaPlaylist(c->playlist, UsoEspecifico);
     free(c);
 }
 
@@ -187,7 +187,7 @@ void CriaArquivosPlaylist(ListPL* l, char* diretorio){
     }
 }
 
-int ComparaPlaylists(ListPL *l1, ListPL *l2, FILE* simi){
+int ComparaPlaylists(ListPL *l1, ListPL *l2){
     Cel *c = l1->prim;
     Cel *p = l2->prim;
     int similar = 0;
@@ -201,4 +201,30 @@ int ComparaPlaylists(ListPL *l1, ListPL *l2, FILE* simi){
     }
     
     return similar;
+}
+
+void MergePlaylists(ListPL *l1, ListPL *l2){
+    Cel *c = l1->prim;
+    Cel *p = l2->prim;
+    Playlist *merge = CriaPlaylist(RetornaNomePlaylist(c->playlist));
+    
+    while(c){
+        while(p){
+            if(ComparaNomePlaylists(c->playlist, p->playlist)){
+                merge = MergeMusicas(c->playlist, p->playlist);
+                LiberaPlaylist(c->playlist, UsoEspecifico);
+                LiberaPlaylist(p->playlist, UsoEspecifico);
+                InserePlaylist(merge, l1);
+                InserePlaylist(merge, l2);
+                break;
+            }
+            p = p->prox;
+        }
+        c = c->prox;
+        p = l2->prim;
+    }
+    
+    if(EstaVaziaPlaylist(merge)){
+        LiberaPlaylist(merge, UsoGeral);
+    }
 }

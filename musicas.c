@@ -84,7 +84,7 @@ void RemoveMusica(Playlist* p, Musica* m){
 }
 
 void LiberaPlaylist(Playlist* p, int op){
-    Cel* c, * aux = p->prim;
+    Cel *c = NULL, *aux = p->prim;
     while(aux){
         c = aux;
         aux = aux->prox;
@@ -174,4 +174,52 @@ int ComparaMusicas(Playlist *p1, Playlist *p2){
         c2= p2->prim;
     }
     return qtd;
+}
+
+int ComparaNomePlaylists(Playlist *p1, Playlist *p2){
+    if(strcmp(p1->nome, p2->nome) == 0){
+        return 1;
+    }
+    return 0;
+}
+
+Playlist *MergeMusicas(Playlist *p1, Playlist *p2){
+    Cel* c1 = p1->prim;
+    Cel* c2= p2->prim;
+    Playlist *nova = CriaPlaylist(p1->nome);
+    
+    while(c1){
+        InsereMusica(nova, c1->music);
+        c1 = c1->prox;
+    }
+    c1 = nova->prim;
+    while(c2){
+        int flag = 0;
+        c1 = nova->prim;
+        while(c1){
+            //Verifica se existe a mesma música em ambas as playlists
+            if(strcmp(c2->music->nome, c1->music->nome) == 0) { 
+                flag = 0;
+                break;
+            }
+            else {
+                flag = 1;
+            }
+            c1 = c1->prox;
+        }
+        
+        if(flag){
+            InsereMusica(nova, c2->music);
+        }
+        c2 = c2->prox;
+    }
+
+    return nova;
+}
+
+int EstaVaziaPlaylist(Playlist *p1){
+    if(p1->prim == NULL && p1->ult == NULL){
+        return 1;
+    }
+    return 0;
 }

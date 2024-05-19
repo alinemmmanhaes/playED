@@ -6,6 +6,8 @@
 
 #define Amizade 0
 #define ListaGeral 1
+#define Normal 0
+#define Merge 1
 
 typedef struct lista Lista;
 
@@ -63,8 +65,8 @@ void OrganizaPessoaPorArtista(Lista* pessoas);
 //Gera o arquivo “played-refatorada.txt”, printando nome de cada pessoa, numero de playlists e seus nomes
 void GeraPlayedRefatorada(Lista* pessoas);
 
-//Para cada pessoa da lista de pessoas, gera arquivos com as playlists atualizadas
-void CriaNovosArquivosPessoa(Lista* pessoas);
+/*//Para cada pessoa da lista de pessoas, gera arquivos com as playlists atualizadas
+void CriaNovosArquivosPessoa(Lista* pessoas);*/
 
 /*
 Verifica quem vem antes na lista de pessoas:
@@ -75,5 +77,10 @@ int PessoaJaFoiAnalisada(Lista *pessoas, Pessoa *p1, Pessoa *p2);
 
 //Gera o arquivo “similaridades.txt”, printando nome de cada pessoa e amigo, e a qtd de musicas similares entre eles
 void VerificaSimilaridades(Lista* pessoas);
+
+void RealizaMergePlaylists(Lista* pessoas);
+
+//Para cada pessoa da lista de pessoas, gera arquivos com as playlists atualizadas
+void CriaNovosArquivosPessoa(Lista* pessoas, int op);
 
 #endif

@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#define SeparaArtista 0
+#define UsoEspecifico 0
 #define UsoGeral 1
 
 typedef struct musica Musica;
@@ -57,5 +57,12 @@ void ImprimePlaylistEmArquivo(Playlist* p, FILE* arq);
 
 //Compara a qtd de músicas similares entre 2 playlists, retornando essa qtd
 int ComparaMusicas(Playlist *p1, Playlist *p2);
+
+//Compara os nomes de duas playlists e retorna 1 se forem iguais, 0 caso contrário
+int ComparaNomePlaylists(Playlist *p1, Playlist *p2);
+
+Playlist *MergeMusicas(Playlist *p1, Playlist *p2);
+
+int EstaVaziaPlaylist(Playlist *p1);
 
 #endif

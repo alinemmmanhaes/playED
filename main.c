@@ -66,7 +66,10 @@ int main(int argc, char *argv[]) {
 
     VerificaSimilaridades(listaPessoas);
 
-    CriaNovosArquivosPessoa(listaPessoas);
+    CriaNovosArquivosPessoa(listaPessoas, Normal);
+
+    RealizaMergePlaylists(listaPessoas);
+    CriaNovosArquivosPessoa(listaPessoas, Merge);
 
     LiberaListPessoas(listaPessoas, ListaGeral);
     fclose(arqAmizades);

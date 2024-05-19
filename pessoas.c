@@ -8,7 +8,7 @@ struct pessoa{
     char* nome;
     Amigos* amigos;
     ListPL* playlists;
-    int similaridades;
+    int jaAnalisada;
 };
 
 typedef struct cel Cel;
@@ -29,7 +29,7 @@ Pessoa* CriaPessoa(char* nome){
     p->nome = strdup(nome);
     p->amigos = CriaListPessoas();
     p->playlists = CriaListPL();
-    p->similaridades = 0;
+    p->jaAnalisada = 0;
     return p;
 }
 
@@ -184,7 +184,7 @@ void GeraPlayedRefatorada(Lista* pessoas){
     fclose(PlayedRef);
 }
 
-void CriaNovosArquivosPessoa(Lista* pessoas){
+/*void CriaNovosArquivosPessoa(Lista* pessoas){
     Cel* c = pessoas->prim;
     while(c){
         char folder[1000];
@@ -193,7 +193,7 @@ void CriaNovosArquivosPessoa(Lista* pessoas){
         CriaArquivosPlaylist(c->pessoa->playlists, folder);
         c = c->prox;
     }
-}
+}*/
 
 int PessoaJaFoiAnalisada(Lista *pessoas, Pessoa *p1, Pessoa *p2){
     Cel* c = pessoas->prim;
@@ -223,15 +223,56 @@ void VerificaSimilaridades(Lista* pessoas){
         p = c->pessoa->amigos->prim;
         while(p){
             //Verifica se a pessoa já foi analisada anteriormente
-            if(p->pessoa->similaridades == 0){
-                int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists, Similaridades);
+            if(p->pessoa->jaAnalisada == 0){
+                int similar = ComparaPlaylists(c->pessoa->playlists, p->pessoa->playlists);
                 fprintf(Similaridades, "%s;%s;%d\n", c->pessoa->nome, p->pessoa->nome, similar);
             }
             p = p->prox;
         }
-        c->pessoa->similaridades = 1;
+        c->pessoa->jaAnalisada = 1;
         c = c->prox;
     }
     
     fclose(Similaridades);
+}
+
+void ZeraAnalisePessoas(Lista *pessoas){
+    Cel *c = pessoas->prim;
+    while(c){
+        c->pessoa->jaAnalisada = 0;
+    }
+}
+void RealizaMergePlaylists(Lista* pessoas){
+    Cel *c = pessoas->prim;
+    Cel *p = c->pessoa->amigos->prim;
+    
+    ZeraAnalisePessoas(pessoas);
+
+    while(c){
+        p = c->pessoa->amigos->prim;
+        while(p){
+            if(p->pessoa->jaAnalisada == 0){
+                MergePlaylists(c->pessoa->playlists, p->pessoa->playlists);
+            }
+            p = p->prox;
+        }
+        c->pessoa->jaAnalisada = 1;
+        c = c->prox;
+    }
+}
+
+void CriaNovosArquivosPessoa(Lista* pessoas, int op){
+    Cel* c = pessoas->prim;
+    while(c){
+        char folder[1000];
+        if(op == Merge){
+            sprintf(folder, "Saida/Merge/%s", c->pessoa->nome);
+        }
+        else {
+            sprintf(folder, "Saida/%s", c->pessoa->nome);
+        }
+        mkdir(folder, S_IRWXU);
+        CriaArquivosPlaylist(c->pessoa->playlists, folder);
+        c = c->prox;
+    }
 }
