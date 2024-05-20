@@ -1,3 +1,8 @@
+//
+//  playlists.c
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #include "playlists.h"
 #include <stdlib.h>
 #include <string.h>

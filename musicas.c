@@ -1,3 +1,8 @@
+//
+//  musicas.c
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #include "musicas.h"
 #include "playlists.h"
 #include <stdlib.h>

@@ -1,3 +1,9 @@
+//
+//  playlists.h
+//  Lista de Playlists
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #ifndef playlists_h
 #define playlists_h
 

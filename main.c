@@ -1,3 +1,8 @@
+//
+//  main.c
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #include <stdlib.h>
 #include <string.h>
 #include "playlists.h"
@@ -68,8 +73,8 @@ int main(int argc, char *argv[]) {
 
     CriaNovosArquivosPessoa(listaPessoas);
     
-    //RealizaMergePlaylists(listaPessoas);
-    //CriaArquivoMergePessoa(listaPessoas);
+    RealizaMergePlaylists(listaPessoas);
+    CriaArquivoMergePessoa(listaPessoas);
     //CriaNovosArquivosPessoa(listaPessoas);// usei só pra testar a função merge, já q CriaArquivoMergePessoa tá dando erro,
                                             //aí vai tudo para a pasta "Saida"
 

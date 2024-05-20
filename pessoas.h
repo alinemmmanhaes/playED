@@ -1,3 +1,9 @@
+//
+//  pessoas.h
+//  Pessoas e Lista de Pessoas
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #ifndef pessoas_h
 #define pessoas_h
 

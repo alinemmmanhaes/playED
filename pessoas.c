@@ -1,3 +1,8 @@
+//
+//  pessoas.c
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #include "pessoas.h"
 #include "playlists.h"
 #include <stdlib.h>
@@ -267,11 +272,15 @@ void RealizaMergePlaylists(Lista* pessoas){
 
 void CriaArquivoMergePessoa(Lista* pessoas){
     Cel* c = pessoas->prim;
+    char folderMerge[1000];
+    sprintf(folderMerge, "Merge"); 
+    mkdir(folderMerge, S_IRWXU);
+
     while(c){
-        char folder[1000];
-        sprintf(folder, "Merge/%s", c->pessoa->nome);
-        mkdir(folder, S_IRWXU);
-        CriaArquivosPlaylist(c->pessoa->playlists, folder);
+        char folderPessoa[1000];
+        sprintf(folderPessoa, "Merge/%s", c->pessoa->nome);
+        mkdir(folderPessoa, S_IRWXU);
+        CriaArquivosPlaylist(c->pessoa->playlists, folderPessoa);
         c = c->prox;
     }
 }

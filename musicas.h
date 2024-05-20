@@ -1,3 +1,9 @@
+//
+//  musicas.h
+//  Musicas e Lista de Musicas (Playlists)
+//
+//  Created by Aline Manhães and Marcela Carpenter on 20/05/24.
+//
 #ifndef musicas_h
 #define musicas_h
 
