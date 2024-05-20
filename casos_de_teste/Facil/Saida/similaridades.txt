@@ -1,4 +1,0 @@
-Arthur;Zeca;0
-Arthur;Ana;0
-Pedro;Ana;0
-Ana;Zeca;7
